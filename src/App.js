@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
+import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
-import CreatePlace from './components/CreatePlace';
-import EditPlace from './components/EditPlace';
+import PlaceForm from './components/PlaceForm';
 import Place from './components/Place';
 import SearchResults from './components/SearchResults';
 import ChangeRequest from './components/ChangeRequest';
@@ -18,10 +17,10 @@ class App extends Component {
             <BrowserRouter>
                 <div className="App">
                     <Switch>
-                        <Route exact path="/" component={Login}/>
+                        <Route exact path="/" component={LoginForm}/>
                         <Route exact path="/dashboard" component={Dashboard}/>
-                        <Route path="/places/create" component={CreatePlace}/>
-                        <Route path="/places/:id/edit" component={EditPlace}/>
+                        <Route path="/places/create" component={PlaceForm}/>
+                        <Route path="/places/:id/edit" component={PlaceForm}/>
                         <Route path="/places/:id" component={Place}/>
                         <Route path="/search_place" component={SearchResults}/>
                         <Route path="/search_users" component={SearchUsersResults}/>
