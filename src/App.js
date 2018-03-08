@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import CreatePlace from './components/CreatePlace';
+import EditPlace from './components/EditPlace';
 
 class App extends Component {
     render() {
@@ -12,6 +14,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Login}/>
                         <Route exact path="/dashboard" component={Dashboard}/>
+                        <Route path="/place/create" component={CreatePlace}/>
+                        <Route path="/place/:id/edit" component={EditPlace}/>
                         <Redirect from='*' to='/' />
                     </Switch>
                 </div>
