@@ -8,6 +8,7 @@ import EditPlace from './components/EditPlace';
 import Place from './components/Place';
 import SearchResults from './components/SearchResults';
 import ChangeRequest from './components/ChangeRequest';
+import SearchUsersResults from './components/SearchUsersResults';
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route path="/place/:id/edit" component={EditPlace}/>
                         <Route path="/place/:id" component={Place}/>
                         <Route path="/search_place" component={SearchResults}/>
+                        <Route path="/search_users" component={SearchUsersResults}/>
                         <Route path="/change_request/:id" component={ChangeRequest}/>
                         <Redirect from='*' to='/' />
                     </Switch>
