@@ -7,6 +7,7 @@ import CreatePlace from './components/CreatePlace';
 import EditPlace from './components/EditPlace';
 import Place from './components/Place';
 import SearchResults from './components/SearchResults';
+import ChangeRequest from './components/ChangeRequest';
 
 class App extends Component {
     render() {
@@ -20,6 +21,7 @@ class App extends Component {
                         <Route path="/place/:id/edit" component={EditPlace}/>
                         <Route path="/place/:id" component={Place}/>
                         <Route path="/search_place" component={SearchResults}/>
+                        <Route path="/change_request/:id" component={ChangeRequest}/>
                         <Redirect from='*' to='/' />
                     </Switch>
                 </div>
