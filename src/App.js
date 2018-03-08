@@ -10,6 +10,7 @@ import SearchResults from './components/SearchResults';
 import ChangeRequest from './components/ChangeRequest';
 import SearchUsersResults from './components/SearchUsersResults';
 import Account from './components/Account';
+import User from './components/User';
 
 class App extends Component {
     render() {
@@ -19,13 +20,14 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Login}/>
                         <Route exact path="/dashboard" component={Dashboard}/>
-                        <Route path="/place/create" component={CreatePlace}/>
-                        <Route path="/place/:id/edit" component={EditPlace}/>
-                        <Route path="/place/:id" component={Place}/>
+                        <Route path="/places/create" component={CreatePlace}/>
+                        <Route path="/places/:id/edit" component={EditPlace}/>
+                        <Route path="/places/:id" component={Place}/>
                         <Route path="/search_place" component={SearchResults}/>
                         <Route path="/search_users" component={SearchUsersResults}/>
                         <Route path="/change_request/:id" component={ChangeRequest}/>
                         <Route path="/account" component={Account}/>
+                        <Route path="/users/:id" component={User}/>
                         <Redirect from='*' to='/' />
                     </Switch>
                 </div>
