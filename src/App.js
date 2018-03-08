@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import CreatePlace from './components/CreatePlace';
 import EditPlace from './components/EditPlace';
+import Place from './components/Place';
 
 class App extends Component {
     render() {
@@ -16,6 +17,7 @@ class App extends Component {
                         <Route exact path="/dashboard" component={Dashboard}/>
                         <Route path="/place/create" component={CreatePlace}/>
                         <Route path="/place/:id/edit" component={EditPlace}/>
+                        <Route path="/place/:id" component={Place}/>
                         <Redirect from='*' to='/' />
                     </Switch>
                 </div>
