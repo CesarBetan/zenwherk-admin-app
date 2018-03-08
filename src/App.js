@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import CreatePlace from './components/CreatePlace';
 import EditPlace from './components/EditPlace';
 import Place from './components/Place';
+import SearchResults from './components/SearchResults';
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
                         <Route path="/place/create" component={CreatePlace}/>
                         <Route path="/place/:id/edit" component={EditPlace}/>
                         <Route path="/place/:id" component={Place}/>
+                        <Route path="/search_place" component={SearchResults}/>
                         <Redirect from='*' to='/' />
                     </Switch>
                 </div>
