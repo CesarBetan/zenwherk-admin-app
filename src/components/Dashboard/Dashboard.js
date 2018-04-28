@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
+import NavBar from '../Shared/Navbar/Navbar'
 
 class Dashboard extends Component {
     render() {
         return (
-            <p>Dashboard component!</p>
+            <div>
+                Strausz es puto
+            </div>
         );
     }
 }
