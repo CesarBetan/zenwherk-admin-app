@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Landing.css';
-import axios from 'axios'
+import axios from 'axios';
 import queryString from 'query-string'
-import { Redirect } from 'react-router-dom';
 
 class Landing extends Component {
 
@@ -20,7 +19,7 @@ class Landing extends Component {
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         const parsedHash = queryString.parse(window.location.hash);
         this.remove_hash_from_url();
         if(parsedHash.access_token){
@@ -29,13 +28,11 @@ class Landing extends Component {
 
         if(localStorage.getItem("accesstoken")){
             if(!localStorage.getItem("user")) {
-                console.log('Will obtain user');
                 const config = {
                     headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
                 };
                 axios.get("http://192.168.0.16:9999/user", config)
                     .then(resp => {
-                        console.log('Updating local storage');
                         localStorage.setItem("user", resp.data.principal.uuid);
                         this.props.history.push('/dashboard');
                     }).catch((error) => console.log(error))
