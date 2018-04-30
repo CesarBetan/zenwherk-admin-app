@@ -6,3 +6,9 @@
 .input {
     display: inline-block;
 }
+
+.new-btn {
+    position: absolute;
+    left: 93%;
+    top: 91%;
+}

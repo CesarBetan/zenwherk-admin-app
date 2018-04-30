@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import { Navbar, NavItem, Input, Icon, Button } from 'react-materialize';
+import { Navbar, NavItem} from 'react-materialize';
 import { apis as api } from '../../../Utils/apis';
 
 class NavBar extends Component {
@@ -21,7 +21,7 @@ class NavBar extends Component {
     render() {
         return (
             <div>
-                <Navbar left fixed = {true} style={{backgroundColor: '#00de91'}}>
+                <Navbar right fixed = {true} style={{backgroundColor: '#00de91'}}>
                     <NavItem href="/dashboard">Dashboard</NavItem>
                     <NavItem href="/places">Places</NavItem>
                     <NavItem onClick={this.logOut}>Log Out</NavItem>
