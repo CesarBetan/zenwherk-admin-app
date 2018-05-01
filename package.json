@@ -5,11 +5,15 @@
   "dependencies": {
     "axios": "^0.18.0",
     "query-string": "^5.1.1",
+    "rc-time-picker": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-materialize": "^2.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "react-simple-timefield": "^2.0.0",
+    "react-time-input": "0.0.17",
+    "react-time-picker": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

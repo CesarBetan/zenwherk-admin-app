@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Col, CardTitle, Button, Chip, Modal, Toast} from 'react-materialize';
+import { Card, Col, CardTitle, Button, Chip, Modal} from 'react-materialize';
 import noPic from '../../Assets/noPic.jpg';
 import PlaceForm from '../PlaceForm';
 import { apis as api} from '../../Utils/apis';
@@ -18,7 +18,7 @@ class Place extends Component {
     deletePlace() {
         const { uuid } = this.props.place;
         axios.delete(`${this.api}place/${uuid}`, this.config).then( res => {
-            window.Materialize.toast('Lugar Eliminado', 4000);
+            window.Materialize.toast('Lugar Eliminado', 3000);
             this.props.onDeletePlace(uuid);
         }).catch( err => {
             window.Materialize.toast('Error al eliminar', 3000);
