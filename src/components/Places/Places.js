@@ -5,7 +5,7 @@ import NavBar from '../Shared/Navbar/Navbar';
 import axios from 'axios';
 import { apis as api } from '../../Utils/apis';
 import Place from '../Place/Place';
-import EmptyForm from "../PlaceForm/EmptyForm";
+import EmptyForm from "../EmptyForm/EmptyForm";
 
 class Places extends Component {
 
