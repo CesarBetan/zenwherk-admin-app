@@ -4,6 +4,7 @@ import NavBar from '../Shared/Navbar/Navbar'
 import { Col, Row, Collection, CollectionItem, Button, Toast } from 'react-materialize';
 import {apis as api} from "../../Utils/apis";
 import axios from 'axios';
+import { LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Line, Legend, Label } from 'recharts';
 
 class Dashboard extends Component {
 
@@ -13,7 +14,7 @@ class Dashboard extends Component {
         this.config = {
             headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
         };
-        this.state = {placeFeatures: [], placeSchedule: [], placeProposals: [], featureChanges: [], scheduleChanges: [], placeChanges: []};
+        this.state = {placeFeatures: [], placeSchedule: [], placeProposals: [], featureChanges: [], scheduleChanges: [], placeChanges: [], data: []};
     }
 
     componentWillMount() {
@@ -26,6 +27,20 @@ class Dashboard extends Component {
         this.getPlaceProposals();
         this.getPlaceSchedule();
         this.getScheduleChange();
+        this.getStats();
+    }
+
+    getStats() {
+        axios.get(`${this.api}stats`, this.config).then(({data: result}) => {
+            const newData = result.result.map(({date, users}) => ({
+                name: date,
+                u: users
+            }));
+            this.setState({ data: newData });
+        }).catch(err => {
+            console.log(err);
+            window.Materialize.toast('Error al obtener estadísticas', 3000);
+        });
     }
 
     getPlaceFeatures() {
@@ -80,6 +95,20 @@ class Dashboard extends Component {
         return (
             <div>
                 <NavBar history={this.props.history}/>
+                <Row>
+                    <Col m={6} s={12} className="dashboard-graph-container">
+                        <LineChart width={600} height={300} data={this.state.data}
+                                   margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                            <Label value="fsdff" />
+                            <XAxis dataKey="name"/>
+                            <YAxis />
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <Tooltip/>
+                            <Legend verticalAlign="top" height={36}/>
+                            <Line type="monotone" dataKey="u" name="Usuarios nuevos" stroke="#00de91" activeDot={{r: 8}}/>
+                        </LineChart>
+                    </Col>
+                </Row>
                 <Row>
                     <Col m={4} s={12}>
                         <h5>Features</h5>
