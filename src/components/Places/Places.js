@@ -90,8 +90,7 @@ class Places extends Component {
                     trigger={<Button floating
                                      icon='add'
                                      className='red new-btn'
-                                     large
-                                     style={{bottom: '45px', right: '24px'}}/>}>
+                                     large/>}>
                     <EmptyForm/>
                 </Modal>
             </div>

@@ -59,7 +59,7 @@ class ImagesForm extends Component {
         return (
             <div>
                 <p>Imágenes:</p>
-                <input type="file" accept="image/jpeg, image/jpg" multiple onChange={this.updateImage.bind(this)}/>
+                <input type="file" accept="image/jpeg" multiple onChange={this.updateImage.bind(this)}/>
                 <Row className="center">
                     <Button className='green' waves="light" onClick={this.postImage.bind(this)}>Guardar</Button>
                 </Row>
