@@ -1,9 +1,15 @@
 .collection {
-    max-height: 200px;
+    max-height: 400px;
     overflow: scroll;
 }
 
 .dashboard-graph-container {
+    display: inline-block;
+    float: none !important;
+    margin-top: 20px;
+}
+
+.proposals-container {
     display: inline-block;
     float: none !important;
     margin-top: 20px;

@@ -41,7 +41,7 @@ class ImagesForm extends Component {
             axios.post(`${this.baseUrl}picture`, payload, this.config).then( res => {
                 window.Materialize.toast('Imagen enviada', 3000);
             }).catch( err => {
-                window.Materialize.toast('Server Error: '+err.data, 3000);
+                window.Materialize.toast('Server Error: '+err.message, 3000);
             });
         })
     }

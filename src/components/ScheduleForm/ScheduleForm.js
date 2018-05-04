@@ -14,20 +14,20 @@ class ScheduleForm extends Component {
         };
         this.state = {
             schedules: [],
-            monOpen: "",
-            monClose: "",
-            tusOpen: "",
-            tusClose: "",
-            wedOpen: "",
-            wedClose: "",
-            thuOpen: "",
-            thuClose: "",
-            friOpen: "",
-            friClose: "",
-            satOpen: "",
-            satClose: "",
-            sunOpen: "",
-            sunClose: "",
+            monOpen: "00:00",
+            monClose: "00:00",
+            tusOpen: "00:00",
+            tusClose: "00:00",
+            wedOpen: "00:00",
+            wedClose: "00:00",
+            thuOpen: "00:00",
+            thuClose: "00:00",
+            friOpen: "00:00",
+            friClose: "00:00",
+            satOpen: "00:00",
+            satClose: "00:00",
+            sunOpen: "00:00",
+            sunClose: "00:00",
         }
     }
 
@@ -172,7 +172,7 @@ class ScheduleForm extends Component {
             axios.post(`${this.baseUrl}place_schedule`, schedule, this.config).then( res => {
                 window.Materialize.toast('Horario enviado', 3000);
             }).catch( err => {
-                window.Materialize.toast('Server Error: '+err.data, 3000);
+                window.Materialize.toast('Server Error: '+err.message, 3000);
             });
         });
     }

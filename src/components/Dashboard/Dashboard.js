@@ -5,6 +5,7 @@ import { Col, Row, Collection, CollectionItem, Button, Toast } from 'react-mater
 import {apis as api} from "../../Utils/apis";
 import axios from 'axios';
 import { LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Line, Legend, Label } from 'recharts';
+import PlaceProposalCollection from "../PlaceProposalCollection/PlaceProposalCollection";
 
 class Dashboard extends Component {
 
@@ -14,19 +15,14 @@ class Dashboard extends Component {
         this.config = {
             headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
         };
-        this.state = {placeFeatures: [], placeSchedule: [], placeProposals: [], featureChanges: [], scheduleChanges: [], placeChanges: [], data: []};
+        this.state = {placeProposals: [], data: []};
     }
 
     componentWillMount() {
         if(!localStorage.getItem('accesstoken') || !localStorage.getItem('user')){
             this.props.history.push('/landing');
         }
-        this.getPlaceFeatures();
-        this.getFeatureChange();
-        this.getPlaceChange();
         this.getPlaceProposals();
-        this.getPlaceSchedule();
-        this.getScheduleChange();
         this.getStats();
     }
 
@@ -43,52 +39,29 @@ class Dashboard extends Component {
         });
     }
 
-    getPlaceFeatures() {
-        axios.get(`${this.api}place_feature?q=changes`, this.config).then( ({result}) => {
-            this.setState({placeFeatures: result});
-        }).catch( err => {
-            window.Materialize.toast('Error al obtener Place_Features', 3000);
-        });
-    }
-
-    getPlaceSchedule() {
-        axios.get(`${this.api}place_schedule?q=changes`, this.config).then( ({result}) => {
-            this.setState({placeSchedule: result});
-        }).catch( err => {
-            window.Materialize.toast('Error al obtener Place_Schedules', 3000);
-        });
-    }
-
     getPlaceProposals() {
-        axios.get(`${this.api}place_proposals`, this.config).then( ({result}) => {
-            this.setState({placeProposals: result});
+        axios.get(`${this.api}place_proposals`, this.config).then( ({data: result}) => {
+            this.setState({placeProposals: result.result});
         }).catch( err => {
             window.Materialize.toast('Error al obtener Place_Proposals', 3000);
         });
     }
 
-    getFeatureChange() {
-        axios.get(`${this.api}place_feature_change`, this.config).then( ({result}) => {
-            this.setState({featureChanges: result});
-        }).catch( err => {
-            window.Materialize.toast('Error al obtener Feature_Change', 3000);
+    forPlaceProposals() {
+        return this.state.placeProposals.map(place => {
+            return (
+                <PlaceProposalCollection
+                    place = { place }
+                    onApprove={this.deletePlace.bind(this)}
+                    onDecline={this.deletePlace.bind(this)}
+                />
+            );
         });
     }
 
-    getScheduleChange() {
-        axios.get(`${this.api}place_schedule_change`, this.config).then( ({result}) => {
-            this.setState({scheduleChanges: result});
-        }).catch( err => {
-            window.Materialize.toast('Error al obtener Schedule_Change', 3000);
-        });
-    }
-
-    getPlaceChange() {
-        axios.get(`${this.api}place_change`, this.config).then( ({result}) => {
-            this.setState({placeChanges: result});
-        }).catch( err => {
-            window.Materialize.toast('Error al obtener Place_Change', 3000);
-        });
+    deletePlace(uuid) {
+        const proposals = this.state.placeProposals.filter((place) => place.uuid !== uuid);
+        this.setState({ placeProposals: proposals });
     }
 
     render() {
@@ -110,90 +83,10 @@ class Dashboard extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col m={4} s={12}>
-                        <h5>Features</h5>
+                    <Col m={6} s={12} className="proposals-container">
+                        <h4>Place Proposals</h4>
                         <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                        </Collection>
-                    </Col>
-                    <Col m={4} s={12}>
-                        <h5>Schedules</h5>
-                        <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                        </Collection>
-                    </Col>
-                    <Col m={4} s={12}>
-                        <h5>Place Proposals</h5>
-                        <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                        </Collection>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col m={4} s={12}>
-                        <h5>Place Features</h5>
-                        <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                        </Collection>
-                    </Col>
-                    <Col m={4} s={12}>
-                        <h5>Place Schedules</h5>
-                        <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                        </Collection>
-                    </Col>
-                    <Col m={4} s={12}>
-                        <h5>Place Changes</h5>
-                        <Collection className="collection">
-                            <CollectionItem>
-                                <span><strong>wifi</strong></span>
-                                <Button floating className='green' waves='light' icon='check' />
-                                <Button floating className='red' waves='light' icon='clear' />
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
-                            <CollectionItem>
-                                <p><strong>wifi</strong></p>
-                            </CollectionItem>
+                            {this.forPlaceProposals()}
                         </Collection>
                     </Col>
                 </Row>

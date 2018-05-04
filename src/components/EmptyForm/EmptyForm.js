@@ -6,6 +6,7 @@ import axios from 'axios';
 import {apis as api} from "../../Utils/apis";
 import ImagesForm from "../ImagesForm/ImagesForm";
 import ScheduleForm from "../ScheduleForm/ScheduleForm";
+import { categories as categories } from "../../Utils/categories";
 
 class EmptyForm extends Component {
 
@@ -71,6 +72,16 @@ class EmptyForm extends Component {
         });
     }
 
+    forCategories() {
+        return categories.forEach( cat => {
+            return (
+                <div>
+                    <option value={cat.id}>{cat.name}</option>
+                </div>
+            );
+        });
+    }
+
     render() {
         return (
             <div>
@@ -79,9 +90,7 @@ class EmptyForm extends Component {
                     <Row>
                         <Input s={6} label="Nombre" onChange={(e) => {this.setState({name: e.target.value})}}/>
                         <Input s={6} type='select' label='Categoría'>
-                            <option value='1'>Option 1</option>
-                            <option value='2'>Option 2</option>
-                            <option value='3'>Option 3</option>
+                            <div>{this.forCategories()}</div>
                         </Input>
                         <Input s={12} label="Teléfono" onChange={(e) => {this.setState({phone: e.target.value})}}/>
                         <Input label="Descripción" s={12} onChange={(e) => {this.setState({description: e.target.value})}}/>
