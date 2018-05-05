@@ -31,7 +31,7 @@ class Landing extends Component {
                 const config = {
                     headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
                 };
-                axios.get("http://192.168.0.16:9999/user", config)
+                axios.get("https://zenwherk-auth-app.herokuapp.com/user", config)
                     .then(resp => {
                         localStorage.setItem("user", resp.data.principal.uuid);
                         this.props.history.push('/dashboard');
@@ -43,7 +43,7 @@ class Landing extends Component {
     }
 
     renderLoginPage() {
-        return (<a href="http://192.168.0.16:9999/oauth/authorize?client_id=zenwherk&response_type=token&redirect_uri=http://localhost:3000/">Login</a>);
+        return (<a href="https://zenwherk-auth-app.herokuapp.com/oauth/authorize?client_id=zenwherk&response_type=token&redirect_uri=https://zenwherk-admin.firebaseapp.com/">Login</a>);
     }
 
     render() {
@@ -51,7 +51,7 @@ class Landing extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title">ZenWherk Admin</h1>
                 </header>
                 <p className="App-intro">
                     {

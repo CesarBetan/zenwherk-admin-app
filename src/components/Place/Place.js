@@ -37,8 +37,6 @@ class Place extends Component {
                     <p>{place.address}</p>
                     <p>{place.website}</p>
                     <p>{place.phone}</p>
-                    <p>FEATURES</p>
-                    <Chip>Wi-Fi</Chip><Chip>Coffee</Chip>
                     <Row className='center'>
                         <Col s={6}>
                             <Modal
@@ -58,8 +56,6 @@ class Place extends Component {
                                     </Tab>
                                     <Tab title="Horarios">
                                         <EditSchedule schedules = { place.schedules }/>
-                                    </Tab>
-                                    <Tab title="Features">
                                     </Tab>
                                 </Tabs>
                             </Modal>

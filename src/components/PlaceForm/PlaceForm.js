@@ -4,6 +4,7 @@ import { Row, Input, Button} from 'react-materialize';
 import DraggableMap from "../DraggableMap/DraggableMap";
 import {apis as api} from "../../Utils/apis";
 import axios from 'axios';
+import {categories} from "../../Utils/categories";
 
 class PlaceForm extends Component {
 
@@ -23,7 +24,7 @@ class PlaceForm extends Component {
             description: place.description,
             address: place.address,
             webPage: place.website,
-            category: 1,
+            category: place.category,
         };
     }
 
@@ -70,10 +71,10 @@ class PlaceForm extends Component {
         return (
             <Row>
                 <Input value={place.name} s={6} label="Nombre" onChange={(e) => {this.setState({name: e.target.value})}}/>
-                <Input s={6} type='select' label='Categoría'>
-                    <option value='1'>Option 1</option>
-                    <option value='2'>Option 2</option>
-                    <option value='3'>Option 3</option>
+                <Input s={6} type='select' label='Categoría' defaultValue={place.category} onChange={(e) => {this.setState({category: e.target.value})}}>
+                    <option value={categories[0].id}>{categories[0].name}</option>
+                    <option value={categories[1].id}>{categories[1].name}</option>
+                    <option value={categories[2].id}>{categories[2].name}</option>
                 </Input>
                 <Input s={12} value={place.phone} label="Teléfono" onChange={(e) => {this.setState({phone: e.target.value})}}/>
                 <Input value={place.description} label="Descripción" s={12} onChange={(e) => {this.setState({description: e.target.value})}}/>

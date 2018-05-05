@@ -13,11 +13,9 @@ class EditSchedule extends Component {
         this.config = {
             headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
         };
-        this.uuids = [];
         this.state = {
             openTime: "",
-            closeTime: "",
-            uuid: ""
+            closeTime: ""
         }
     }
 
@@ -32,7 +30,7 @@ class EditSchedule extends Component {
     forTimePicker() {
         return this.schedules.map(s => {
             return (
-                <div>
+                <div key={s.uuid}>
                     <Row>
                         <p>{s.day}</p>
                         <Col s={4}>

@@ -7,6 +7,7 @@ import {apis as api} from "../../Utils/apis";
 import ImagesForm from "../ImagesForm/ImagesForm";
 import ScheduleForm from "../ScheduleForm/ScheduleForm";
 import { categories as categories } from "../../Utils/categories";
+import FeatureForm from "../FeatureForm/FeatureForm";
 
 class EmptyForm extends Component {
 
@@ -23,7 +24,8 @@ class EmptyForm extends Component {
             address: "",
             webPage: "",
             category: 1,
-            images: []
+            images: [],
+            count: 1
         };
         this.config = {
             headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
@@ -72,16 +74,6 @@ class EmptyForm extends Component {
         });
     }
 
-    forCategories() {
-        return categories.forEach( cat => {
-            return (
-                <div>
-                    <option value={cat.id}>{cat.name}</option>
-                </div>
-            );
-        });
-    }
-
     render() {
         return (
             <div>
@@ -89,8 +81,10 @@ class EmptyForm extends Component {
                 <Tab title="Información Principal">
                     <Row>
                         <Input s={6} label="Nombre" onChange={(e) => {this.setState({name: e.target.value})}}/>
-                        <Input s={6} type='select' label='Categoría'>
-                            <div>{this.forCategories()}</div>
+                        <Input s={6} type='select' label='Categoría' onChange={(e) => {this.setState({category: e.target.value})}}>
+                            <option value={categories[0].id}>{categories[0].name}</option>
+                            <option value={categories[1].id}>{categories[1].name}</option>
+                            <option value={categories[2].id}>{categories[2].name}</option>
                         </Input>
                         <Input s={12} label="Teléfono" onChange={(e) => {this.setState({phone: e.target.value})}}/>
                         <Input label="Descripción" s={12} onChange={(e) => {this.setState({description: e.target.value})}}/>
@@ -103,32 +97,30 @@ class EmptyForm extends Component {
                 </Tab>
                 <Tab title="Imagenes">
                     {
-                        // (this.state.place_uuid) ?
+                        (this.state.place_uuid) ?
                             <div>
                                 <ImagesForm place_uuid = {this.state.place_uuid}/>
                             </div>
-                        // :
-                            // <h5 className="else-title">Favor de completar la información principal primero</h5>
+                        :
+                            <h5 className="else-title">Favor de completar la información principal primero</h5>
                     }
                 </Tab>
                 <Tab title="Features">
                     {
-                        // (this.state.place_uuid) ?
+                        (this.state.place_uuid) ?
                             <div>
-                                <p>Imágenes:</p>
-                                <input type="file" accept="image/jpeg, image/jpg"/>
-                                <Button className='green' waves="light">Guardar</Button>
+                                <FeatureForm place_uuid = {this.state.place_uuid}/>
                             </div>
-                            // :
-                            // <h5 className="else-title">Favor de completar la información principal primero</h5>
+                            :
+                            <h5 className="else-title">Favor de completar la información principal primero</h5>
                     }
                 </Tab>
                 <Tab title="Horarios">
                     {
-                        // (this.state.place_uuid) ?
-                            <ScheduleForm  place_uuid = {this.state.place_uuid} />
-                            // :
-                            // <h5 className="else-title">Favor de completar la información principal primero</h5>
+                        (this.state.place_uuid) ?
+                            <ScheduleForm  place_uuid = {this.state.place_uuid}/>
+                            :
+                            <h5 className="else-title">Favor de completar la información principal primero</h5>
                     }
                 </Tab>
             </Tabs>
