@@ -70,16 +70,16 @@ class PlaceForm extends Component {
         const { place } = this.props;
         return (
             <Row>
-                <Input value={place.name} s={6} label="Nombre" onChange={(e) => {this.setState({name: e.target.value})}}/>
+                <Input defaultValue={place.name} s={6} label="Nombre" onChange={(e) => {this.setState({name: e.target.value})}}/>
                 <Input s={6} type='select' label='Categoría' defaultValue={place.category} onChange={(e) => {this.setState({category: e.target.value})}}>
-                    <option value={categories[0].id}>{categories[0].name}</option>
-                    <option value={categories[1].id}>{categories[1].name}</option>
-                    <option value={categories[2].id}>{categories[2].name}</option>
+                    <option defaultValue={categories[0].id}>{categories[0].name}</option>
+                    <option defaultValue={categories[1].id}>{categories[1].name}</option>
+                    <option defaultValue={categories[2].id}>{categories[2].name}</option>
                 </Input>
-                <Input s={12} value={place.phone} label="Teléfono" onChange={(e) => {this.setState({phone: e.target.value})}}/>
-                <Input value={place.description} label="Descripción" s={12} onChange={(e) => {this.setState({description: e.target.value})}}/>
-                <Input value={place.website} label="Sitio Web" s={12} onChange={(e) => {this.setState({webPage: e.target.value})}}/>
-                <Input value={place.address} label="Dirección" s={12} onChange={(e) => {this.setState({address: e.target.value})}}/>
+                <Input s={12} defaultValue={place.phone} label="Teléfono" onChange={(e) => {this.setState({phone: e.target.value})}}/>
+                <Input defaultValue={place.description} label="Descripción" s={12} onChange={(e) => {this.setState({description: e.target.value})}}/>
+                <Input defaultValue={place.website} label="Sitio Web" s={12} onChange={(e) => {this.setState({webPage: e.target.value})}}/>
+                <Input defaultValue={place.address} label="Dirección" s={12} onChange={(e) => {this.setState({address: e.target.value})}}/>
                 <div className="map"><DraggableMap onMapPinChanged={this.onMapPinChanged.bind(this)} /></div>
                 <div className='save-btn'><Button s={12} className='green' waves="light" onClick={this.updatePlace.bind(this)}>Guardar</Button></div>
             </Row>

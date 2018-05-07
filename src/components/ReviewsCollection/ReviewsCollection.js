@@ -3,7 +3,7 @@ import { CollectionItem, Button, Col, Row } from 'react-materialize';
 import axios from 'axios';
 import {apis as api} from "../../Utils/apis";
 
-class PlaceProposalCollection extends Component {
+class ReviewsCollection extends Component {
 
     constructor(props) {
         super(props);
@@ -15,8 +15,8 @@ class PlaceProposalCollection extends Component {
 
     approve() {
         const uuid = this.props.place.uuid;
-        axios.put(`${this.api}place/${uuid}/approval`, null,this.config).then( res => {
-            window.Materialize.toast('Lugar aceptado', 3000);
+        axios.put(`${this.api}review/${uuid}/approval`, null,this.config).then( res => {
+            window.Materialize.toast('Reseña aprovada', 3000);
             this.props.onApprove(uuid);
         }).catch( err => {
             window.Materialize.toast('Server Error: ' + err.message, 3000);
@@ -25,8 +25,8 @@ class PlaceProposalCollection extends Component {
 
     decline() {
         const uuid  = this.props.place.uuid;
-        axios.put(`${this.api}place/${uuid}/rejection`, null, this.config).then( res => {
-            window.Materialize.toast('Lugar declinado', 3000);
+        axios.put(`${this.api}review/${uuid}/rejection`, null, this.config).then( res => {
+            window.Materialize.toast('Reseña declinada', 3000);
             this.props.onDecline(uuid);
         }).catch( err => {
             window.Materialize.toast('Server Error: ' + err.message, 3000);
@@ -34,15 +34,15 @@ class PlaceProposalCollection extends Component {
     }
 
     render() {
-        const { place } = this.props;
+        const { review } = this.props;
         return (
             <CollectionItem className="collection-item">
                 <Row>
                     <Col s={6}>
-                        <h5>{place.name}</h5>
-                        <p>{place.description}</p>
-                        <p>{place.address}</p>
-                        <p>{place.phone}</p>
+                        <h5>Rating: {review.reviewRating}</h5>
+                        <p>{review.reviewText}</p>
+                        <span>{review.user.name} </span>
+                        <span>{review.user.lastName}</span>
                     </Col>
                     <Col s={3}><Button className='green' waves='light' onClick={this.approve.bind(this)}>Aceptar</Button></Col>
                     <Col s={3}><Button className='red' waves='light' onClick={this.decline.bind(this)}>Declinar</Button></Col>
@@ -52,4 +52,4 @@ class PlaceProposalCollection extends Component {
     }
 
 }
-export default PlaceProposalCollection
+export default ReviewsCollection

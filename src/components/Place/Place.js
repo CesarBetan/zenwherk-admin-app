@@ -32,7 +32,7 @@ class Place extends Component {
         const { place } = this.props;
         return (
             <Col key={place.uuid} m={4} s={12} className="place-card">
-                <Card horizontal header={<CardTitle image={ (place.pictures.length > 0) ? place.pictures[0].url : noPic }>{place.name}</CardTitle>}>
+                <Card horizontal title={place.name} header={<CardTitle image={((place.pictures.length > 0) ? place.pictures[0].url : noPic) }/>}>
                     <p>{place.description}</p>
                     <p>{place.address}</p>
                     <p>{place.website}</p>
@@ -45,8 +45,7 @@ class Place extends Component {
                                 trigger={<Button floating
                                                  small
                                                  className='blue'
-                                                 waves='light'
-                                                 icon='edit'/>}>
+                                                 waves='light'>|</Button>}>
                                 <Tabs className='z-depth-1'>
                                     <Tab title="Información principal">
                                         <PlaceForm place = { place }/>
@@ -67,8 +66,7 @@ class Place extends Component {
                                 trigger={<Button floating
                                                  small
                                                  className='red'
-                                                 waves='light'
-                                                 icon='delete'/>}>
+                                                 waves='light'>––</Button>}>
                                 <p>Al borrar este lugar no se podrá recuperar.</p>
                                 <Button className='red' waves="light" onClick={this.deletePlace.bind(this)}>Borrar</Button>
                             </Modal>

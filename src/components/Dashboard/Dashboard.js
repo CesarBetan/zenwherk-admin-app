@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
 import NavBar from '../Shared/Navbar/Navbar'
-import { Col, Row, Collection, CollectionItem, Button, Toast } from 'react-materialize';
+import { Col, Row, Collection} from 'react-materialize';
 import {apis as api} from "../../Utils/apis";
 import axios from 'axios';
 import { LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Line, Legend, Label } from 'recharts';
 import PlaceProposalCollection from "../PlaceProposalCollection/PlaceProposalCollection";
+import ReviewsCollection from "../ReviewsCollection/ReviewsCollection";
 
 class Dashboard extends Component {
 
@@ -15,7 +16,7 @@ class Dashboard extends Component {
         this.config = {
             headers:{'Authorization':'Bearer ' + localStorage.getItem("accesstoken")}
         };
-        this.state = {placeProposals: [], data: []};
+        this.state = {placeProposals: [], data: [], reviews: []};
     }
 
     componentWillMount() {
@@ -24,6 +25,7 @@ class Dashboard extends Component {
         }
         this.getPlaceProposals();
         this.getStats();
+        this.getReviews();
     }
 
     getStats() {
@@ -43,7 +45,15 @@ class Dashboard extends Component {
         axios.get(`${this.api}place_proposals`, this.config).then( ({data: result}) => {
             this.setState({placeProposals: result.result});
         }).catch( err => {
-            window.Materialize.toast('Error al obtener Place_Proposals', 3000);
+            window.Materialize.toast('Error al obtener Place_Proposals. Server Error: '+err.message, 3000);
+        });
+    }
+
+    getReviews() {
+        axios.get(`${this.api}review?q=reported`, this.config).then( ({data: result}) => {
+            this.setState({reviews: result.result});
+        }).catch( err => {
+            window.Materialize.toast('Error al obtener Reviews. Server Error: '+err.message, 3000);
         });
     }
 
@@ -52,6 +62,18 @@ class Dashboard extends Component {
             return (
                 <PlaceProposalCollection
                     place = { place }
+                    onApprove={this.deletePlace.bind(this)}
+                    onDecline={this.deletePlace.bind(this)}
+                />
+            );
+        });
+    }
+
+    forReviews() {
+        return this.state.reviews.map(review => {
+            return (
+                <ReviewsCollection
+                    review = { review }
                     onApprove={this.deletePlace.bind(this)}
                     onDecline={this.deletePlace.bind(this)}
                 />
@@ -84,9 +106,15 @@ class Dashboard extends Component {
                 </Row>
                 <Row>
                     <Col m={6} s={12} className="proposals-container">
-                        <h4>Place Proposals</h4>
+                        <h4>Propuestas de lugares</h4>
                         <Collection className="collection">
                             {this.forPlaceProposals()}
+                        </Collection>
+                    </Col>
+                    <Col m={6} s={12} className="proposals-container">
+                        <h4>Revisión de Reseñas</h4>
+                        <Collection className="collection">
+                            {this.forReviews()}
                         </Collection>
                     </Col>
                 </Row>

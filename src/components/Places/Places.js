@@ -69,7 +69,6 @@ class Places extends Component {
                                         this.searchPlace()
                                     }
                                 }}>
-                                <Icon>search</Icon>
                             </Input>
                         </div>
                         {
@@ -88,9 +87,8 @@ class Places extends Component {
                     header='Nuevo Lugar'
                     fixedFooter
                     trigger={<Button floating
-                                     icon='add'
                                      className='red new-btn'
-                                     large/>}>
+                                     large>+</Button>}>
                     <EmptyForm/>
                 </Modal>
             </div>
