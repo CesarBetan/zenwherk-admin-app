@@ -74,8 +74,8 @@ class Dashboard extends Component {
             return (
                 <ReviewsCollection
                     review = { review }
-                    onApprove={this.deletePlace.bind(this)}
-                    onDecline={this.deletePlace.bind(this)}
+                    onApprove={this.deleteReview.bind(this)}
+                    onDecline={this.deleteReview.bind(this)}
                 />
             );
         });
@@ -84,6 +84,11 @@ class Dashboard extends Component {
     deletePlace(uuid) {
         const proposals = this.state.placeProposals.filter((place) => place.uuid !== uuid);
         this.setState({ placeProposals: proposals });
+    }
+
+    deleteReview(uuid) {
+        const reviews = this.state.reviews.filter((review) => review.uuid !== uuid);
+        this.setState({ reviews: reviews });
     }
 
     render() {

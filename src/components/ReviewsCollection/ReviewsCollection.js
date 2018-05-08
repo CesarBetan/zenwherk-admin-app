@@ -14,7 +14,7 @@ class ReviewsCollection extends Component {
     }
 
     approve() {
-        const uuid = this.props.place.uuid;
+        const uuid = this.props.review.uuid;
         axios.put(`${this.api}review/${uuid}/approval`, null,this.config).then( res => {
             window.Materialize.toast('Reseña aprovada', 3000);
             this.props.onApprove(uuid);
@@ -24,7 +24,7 @@ class ReviewsCollection extends Component {
     }
 
     decline() {
-        const uuid  = this.props.place.uuid;
+        const uuid  = this.props.review.uuid;
         axios.put(`${this.api}review/${uuid}/rejection`, null, this.config).then( res => {
             window.Materialize.toast('Reseña declinada', 3000);
             this.props.onDecline(uuid);
