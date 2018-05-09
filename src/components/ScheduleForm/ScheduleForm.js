@@ -91,8 +91,8 @@ class ScheduleForm extends Component {
         let schedules = [
             {
                 day: 1,
-                openTime: "1970-01-01"+this.state.monOpen,
-                closeTime: "1970-01-01"+this.state.monClose,
+                openTime: "1970-01-01 "+this.state.monOpen,
+                closeTime: "1970-01-01 "+this.state.monClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -102,8 +102,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 2,
-                openTime: "1970-01-01"+this.state.tusOpen,
-                closeTime: "1970-01-01"+this.state.tusClose,
+                openTime: "1970-01-01 "+this.state.tusOpen,
+                closeTime: "1970-01-01 "+this.state.tusClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -113,8 +113,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 3,
-                openTime: "1970-01-01"+this.state.wedOpen,
-                closeTime: "1970-01-01"+this.state.wedClose,
+                openTime: "1970-01-01 "+this.state.wedOpen,
+                closeTime: "1970-01-01 "+this.state.wedClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -124,8 +124,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 4,
-                openTime: "1970-01-01"+this.state.thuOpen,
-                closeTime: "1970-01-01"+this.state.thuClose,
+                openTime: "1970-01-01 "+this.state.thuOpen,
+                closeTime: "1970-01-01 "+this.state.thuClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -135,8 +135,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 5,
-                openTime: "1970-01-01"+this.state.friOpen,
-                closeTime: "1970-01-01"+this.state.friClose,
+                openTime: "1970-01-01 "+this.state.friOpen,
+                closeTime: "1970-01-01 "+this.state.friClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -146,8 +146,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 6,
-                openTime: "1970-01-01"+this.state.satOpen,
-                closeTime: "1970-01-01"+this.state.satClose,
+                openTime: "1970-01-01 "+this.state.satOpen,
+                closeTime: "1970-01-01 "+this.state.satClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
@@ -157,8 +157,8 @@ class ScheduleForm extends Component {
             },
             {
                 day: 7,
-                openTime: "1970-01-01"+this.state.sunOpen,
-                closeTime: "1970-01-01"+this.state.sunClose,
+                openTime: "1970-01-01 "+this.state.sunOpen,
+                closeTime: "1970-01-01 "+this.state.sunClose,
                 place: {
                     uuid: this.props.place_uuid
                 },
