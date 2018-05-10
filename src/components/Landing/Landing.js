@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Landing.css';
 import axios from 'axios';
-import queryString from 'query-string'
+import queryString from 'query-string';
+import { Button } from 'react-materialize';
 
 class Landing extends Component {
 
@@ -43,21 +44,21 @@ class Landing extends Component {
     }
 
     renderLoginPage() {
-        return (<a href="https://zenwherk-auth-app.herokuapp.com/oauth/authorize?client_id=zenwherk&response_type=token&redirect_uri=https://zenwherk-admin.firebaseapp.com/">Login</a>);
+        return (<Button node='a' href="https://zenwherk-auth-app.herokuapp.com/oauth/authorize?client_id=zenwherk&response_type=token&redirect_uri=https://zenwherk-admin.firebaseapp.com/">Login</Button>);
     }
 
     render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">ZenWherk Admin</h1>
                 </header>
-                <p className="App-intro">
+                <div className="App-intro">
+                    <h1 className="Slogan">Busca. Compara. Revoluciona.</h1>
                     {
                         this.renderLoginPage()
                     }
-                </p>
+                </div>
             </div>
         );
     }

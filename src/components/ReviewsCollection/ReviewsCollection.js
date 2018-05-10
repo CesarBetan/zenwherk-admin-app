@@ -44,8 +44,8 @@ class ReviewsCollection extends Component {
                         <span>{review.user.name} </span>
                         <span>{review.user.lastName}</span>
                     </Col>
-                    <Col s={3}><Button className='green' waves='light' onClick={this.approve.bind(this)}>Aceptar</Button></Col>
-                    <Col s={3}><Button className='red' waves='light' onClick={this.decline.bind(this)}>Declinar</Button></Col>
+                    <Col s={3}><Button className='green' waves='light' onClick={this.approve.bind(this)}>Borrar</Button></Col>
+                    <Col s={3}><Button className='red' waves='light' onClick={this.decline.bind(this)}>Descartar</Button></Col>
                 </Row>
             </CollectionItem>
         )
