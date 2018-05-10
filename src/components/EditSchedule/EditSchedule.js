@@ -3,6 +3,7 @@ import { Row, Col, Button} from 'react-materialize';
 import TimePicker from 'react-time-picker';
 import {apis as api} from "../../Utils/apis";
 import axios from "axios/index";
+import PropTypes from "prop-types";
 
 class EditSchedule extends Component {
 
@@ -70,4 +71,13 @@ class EditSchedule extends Component {
     }
 
 }
+
+EditSchedule.defaultProps = {
+    schedules: []
+};
+
+EditSchedule.propTypes = {
+    schedules: PropTypes.array.isRequired
+};
+
 export default EditSchedule

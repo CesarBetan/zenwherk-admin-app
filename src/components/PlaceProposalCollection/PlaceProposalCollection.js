@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CollectionItem, Button, Col, Row } from 'react-materialize';
 import axios from 'axios';
 import {apis as api} from "../../Utils/apis";
+import PropTypes from "prop-types";
 
 class PlaceProposalCollection extends Component {
 
@@ -52,4 +53,21 @@ class PlaceProposalCollection extends Component {
     }
 
 }
+
+PlaceProposalCollection.defaultProps = {
+    onApprove: () => {
+        console.log("Se espera función onApprove");
+    },
+    onDecline: () => {
+        console.log("Se espera función onDecline");
+    },
+    place: {uuid: ''}
+};
+
+PlaceProposalCollection.propTypes = {
+    onDecline: PropTypes.func.isRequired,
+    onDecline: PropTypes.func.isRequired,
+    place: PropTypes.object.isRequired,
+};
+
 export default PlaceProposalCollection

@@ -3,6 +3,7 @@ import { Row, Col, Button} from 'react-materialize';
 import TimePicker from 'react-time-picker';
 import {apis as api} from "../../Utils/apis";
 import axios from "axios/index";
+import PropTypes from "prop-types";
 
 class ScheduleForm extends Component {
 
@@ -226,4 +227,13 @@ class ScheduleForm extends Component {
     }
 
 }
+
+ScheduleForm.defaultProps = {
+    place_uuid: ''
+};
+
+ScheduleForm.propTypes = {
+    place_uuid: PropTypes.string.isRequired,
+};
+
 export default ScheduleForm

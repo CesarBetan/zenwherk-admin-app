@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios/index";
 import { Button, Row } from 'react-materialize';
 import {apis as api} from "../../Utils/apis";
+import PropTypes from "prop-types";
 
 class ImagesForm extends Component {
 
@@ -68,4 +69,13 @@ class ImagesForm extends Component {
     }
 
 }
+
+ImagesForm.defaultProps = {
+    place_uuid: ''
+};
+
+ImagesForm.propTypes = {
+    place_uuid: PropTypes.string.isRequired
+};
+
 export default ImagesForm

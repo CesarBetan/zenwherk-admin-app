@@ -3,6 +3,7 @@ import { Row, Input, Tabs, Tab, Button, Col} from 'react-materialize';
 import { features } from "../../Utils/features";
 import axios from 'axios';
 import {apis as api} from "../../Utils/apis";
+import PropTypes from "prop-types";
 
 class FeatureForm extends Component {
 
@@ -103,4 +104,13 @@ class FeatureForm extends Component {
     }
 
 }
+
+FeatureForm.defaultProps = {
+    place_uuid: ''
+};
+
+FeatureForm.propTypes = {
+    place_uuid: PropTypes.string.isRequired
+};
+
 export default FeatureForm

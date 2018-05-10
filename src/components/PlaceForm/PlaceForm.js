@@ -5,6 +5,7 @@ import DraggableMap from "../DraggableMap/DraggableMap";
 import {apis as api} from "../../Utils/apis";
 import axios from 'axios';
 import {categories} from "../../Utils/categories";
+import PropTypes from "prop-types";
 
 class PlaceForm extends Component {
 
@@ -86,5 +87,13 @@ class PlaceForm extends Component {
         );
     }
 }
+
+PlaceForm.defaultProps = {
+    place: {}
+};
+
+PlaceForm.propTypes = {
+    place: PropTypes.object.isRequired,
+};
 
 export default PlaceForm;

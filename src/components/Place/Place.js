@@ -7,6 +7,7 @@ import { apis as api} from '../../Utils/apis';
 import axios from 'axios';
 import ImagesForm from "../ImagesForm/ImagesForm";
 import EditSchedule from "../EditSchedule/EditSchedule";
+import PropTypes from "prop-types";
 
 class Place extends Component {
 
@@ -77,5 +78,17 @@ class Place extends Component {
     }
 
 }
+
+Place.defaultProps = {
+    onDeletePlace: () => {
+        console.log("Se espera función onDeletePlace");
+    },
+    place: {}
+};
+
+Place.propTypes = {
+    onDeletePlace: PropTypes.func.isRequired,
+    place: PropTypes.object.isRequired,
+};
 
 export default Place;

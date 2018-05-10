@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CollectionItem, Button, Col, Row } from 'react-materialize';
 import axios from 'axios';
 import {apis as api} from "../../Utils/apis";
+import PropTypes from "prop-types";
 
 class ReviewsCollection extends Component {
 
@@ -52,4 +53,21 @@ class ReviewsCollection extends Component {
     }
 
 }
+
+ReviewsCollection.defaultProps = {
+    onApprove: () => {
+        console.log("Se espera función onApprove");
+    },
+    onDecline: () => {
+        console.log("Se espera función onDecline");
+    },
+    review: {uuid: ''}
+};
+
+ReviewsCollection.propTypes = {
+    onDecline: PropTypes.func.isRequired,
+    onDecline: PropTypes.func.isRequired,
+    review: PropTypes.object.isRequired,
+};
+
 export default ReviewsCollection
